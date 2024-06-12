@@ -8,6 +8,7 @@ export default () => {
 
   useEffect(() => {
     const { onParentNavigate } = mountApp(el.current, {
+      initialPath: history.location.pathname,
       onNavigate: (path) => {
         const { pathname: currentPath } = history.location;
         if (currentPath !== path) {
