@@ -2,15 +2,16 @@ console.log("Marketing bootstrap");
 
 import React from "react";
 import ReactDOM from "react-dom";
-import { createMemoryHistory } from "history";
+import { createMemoryHistory, createBrowserHistory } from "history";
 import App from "./App";
 
 // Mount function to start up the app
-const mountApp = (el, { onNavigate }) => {
-  const history = createMemoryHistory();
+const mountApp = (el, { onNavigate, defaultHistory }) => {
+  const history = defaultHistory || createMemoryHistory();
 
   if (onNavigate) {
     history.listen((location) => {
+      console.log("Navigated to", location.pathname);
       onNavigate(location.pathname);
     });
   }
@@ -30,7 +31,7 @@ const mountApp = (el, { onNavigate }) => {
 // If we are in development and in isolation mode, we need to mount the app
 if (process.env.NODE_ENV === "development") {
   const devRoot = document.querySelector("#_marketing-dev-root");
-  if (devRoot) mountApp(devRoot, {});
+  if (devRoot) mountApp(devRoot, { defaultHistory: createBrowserHistory() });
   else console.warn("Could not find the dev root");
 }
 
