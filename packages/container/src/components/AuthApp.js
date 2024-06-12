@@ -3,11 +3,14 @@ import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 
 export default ({ onSignIn }) => {
-  const el = useRef(null);
   const history = useHistory();
+  const mountDivRef = useRef(null);
+  const thisRef = useRef({ mountDiv: null });
 
   useEffect(() => {
-    const { onParentNavigate } = mountApp(el.current, {
+    thisRef.current.mountDiv = mountDivRef.current;
+
+    const { onParentNavigate } = mountApp(mountDivRef.current, {
       initialPath: history.location.pathname,
       onNavigate: (path) => {
         const { pathname: currentPath } = history.location;
@@ -21,7 +24,12 @@ export default ({ onSignIn }) => {
     history.listen((location) => {
       onParentNavigate(location.pathname);
     });
+
+    return () => {
+      /* --- clear up --- */
+      ReactDOM.unmountComponentAtNode(thisRef.current.mountDiv);
+    };
   }, []);
 
-  return <div ref={el} />;
+  return <div ref={mountDivRef} />;
 };
