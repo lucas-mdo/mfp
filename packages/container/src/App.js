@@ -26,7 +26,8 @@ export default () => {
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   useEffect(() => {
-    if (isSignedIn) {
+    if (isSignedIn && history.location.pathname !== "/dashboard") {
+      console.log("Already signed in, redirecting to dashboard");
       history.push("/dashboard");
     }
   }, [isSignedIn]);
