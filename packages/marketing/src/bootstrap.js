@@ -16,13 +16,22 @@ const mountApp = (el, { onNavigate }) => {
   }
 
   ReactDOM.render(<App history={history} />, el);
+
+  return {
+    onParentNavigate: (path) => {
+      const { pathname: currentPath } = history.location;
+      if (currentPath !== path) {
+        history.push(path);
+      }
+    },
+  };
 };
 
 // If we are in development and in isolation mode, we need to mount the app
 if (process.env.NODE_ENV === "development") {
   const devRoot = document.querySelector("#_marketing-dev-root");
   if (devRoot) mountApp(devRoot, {});
-  else console.error("Could not find the dev root");
+  else console.warn("Could not find the dev root");
 }
 
 export { mountApp };

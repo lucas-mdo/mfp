@@ -7,7 +7,7 @@ export default () => {
   const history = useHistory();
 
   useEffect(() => {
-    mountApp(el.current, {
+    const { onParentNavigate } = mountApp(el.current, {
       onNavigate: (path) => {
         console.log("Navigated to", path);
         const { pathname: currentPath } = history.location;
@@ -15,6 +15,10 @@ export default () => {
           history.push(path);
         }
       },
+    });
+
+    history.listen((location) => {
+      onParentNavigate(location.pathname);
     });
   }, []);
 
