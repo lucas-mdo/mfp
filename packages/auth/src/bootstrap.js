@@ -1,4 +1,4 @@
-console.log("Marketing bootstrap");
+console.log("Auth bootstrap");
 
 import React from "react";
 import ReactDOM from "react-dom";
