@@ -1,4 +1,4 @@
-console.log("Marketing bootstrap");
+console.log("[MA] Marketing bootstrap!");
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -15,7 +15,7 @@ const mountApp = (el, { onNavigate, defaultHistory, initialPath }) => {
 
   if (onNavigate) {
     history.listen((location) => {
-      console.log("Navigated to", location.pathname);
+      console.log("[MA] Navigated to", location.pathname);
       onNavigate(location.pathname);
     });
   }

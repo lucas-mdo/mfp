@@ -1,4 +1,4 @@
-console.log("Auth bootstrap!");
+console.log("[AU] Auth bootstrap!");
 
 import React from "react";
 import ReactDOM from "react-dom";
@@ -18,7 +18,7 @@ const mountApp = (
 
   if (onNavigate) {
     history.listen((location) => {
-      console.log("Navigated to", location.pathname);
+      console.log("[AU] Navigated to", location.pathname);
       onNavigate(location.pathname);
     });
   }

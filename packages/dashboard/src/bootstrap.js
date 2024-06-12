@@ -1,4 +1,4 @@
-console.log("Dashboard bootstrap!");
+console.log("[DA] Dashboard bootstrap!");
 
 import { createApp } from "vue";
 import Dashboard from "./components/Dashboard.vue";

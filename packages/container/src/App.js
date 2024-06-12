@@ -27,7 +27,7 @@ export default () => {
 
   useEffect(() => {
     if (isSignedIn && history.location.pathname !== "/dashboard") {
-      console.log("Already signed in, redirecting to dashboard");
+      console.log("[CO] Already signed in, redirecting to dashboard");
       history.push("/dashboard");
     }
   }, [isSignedIn]);
